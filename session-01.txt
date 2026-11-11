@@ -1,0 +1,54 @@
+POint-01#
+
+Products:- 
+- Red Hat Satellite (Control node) - Version 6.X (6.15/6.18)
+- Red Hat Enterprise Linux (Managed nodes) - Version (RHELv7/8/9/10)
+
+Docs:- 
+Red Hat Satellite-
+https://www.redhat.com/en/technologies/management/satellite
+https://docs.redhat.com/en/documentation/red_hat_satellite/6.18
+
+Red Hat Enterprise Linux-
+https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10
+
+
+
+
+POint-2# 
+RH403 - https://www.redhat.com/en/services/training/rh403-red-hat-satellite-6-administration
+EX403 - https://www.redhat.com/en/services/training/ex403-red-hat-certificate-expertise-deployment-systems-management-exam
+
+
+
+
+POint-3# Classroom Environment:-
+1-) Users details:-
+    - student/student (sudo access)
+    - root/redhat 
+   
+2-) Network/Domain:-
+    Network Name                Domain Name                       CIDR Range 
+	- Provider Network          example.com                       172.25.254.0/24
+	- Student Network           lab.example.com                   172.25.250.0/24 
+
+    FYI
+	- Provider network connect Student Network to internet.
+    - Student network main internal network (client like "citi" deployed all infra).
+	
+3-) VMs/servers details:-
+    - workstation.lab.example.com   (Jump Server)
+	- servera-d.lab.example.com     (Managed content host)
+	- servere.lab.example.com       (Unprovisioned host)
+	- satellite.lab.example.com     (Sarellite Server)
+	- capsule.lab.example.com       (Capsule Server)
+	- utility.lab.example.com       (System with required utility services for student network systems)
+	
+	Server that hosts the required classroom materials
+	- classroom.example.com
+    - content.example.com
+	- material.example.com     
+	FYI- all above nodes (classroom/connect/material) are same name (Just a Cname).
+	
+	
