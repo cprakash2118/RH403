@@ -1,0 +1,89 @@
+Unit-1# Planning and Deploying Red Hat Satellite
+ - Introduction to Red Hat Satellite.
+ - Planning a Red Hat Satellite Deployment 
+ - Installing Red Hat Satellite
+ 
+ - Administering Satellite with the Hammer Command-line Tool
+ - Configuring Organizations and Content Manifests 
+ 
+Point-1) Introduction to Red Hat Satellite.
+1.1- What is Red Hat Satellite ?
+   - What is it? 
+     - Centralized system management platform for RHEL servers.   
+	 - RHEL servers running physical hardware (bare metal), Virtual machine, Cloud instance (infra).
+	   Example:-
+	    RHOSO - Red Hat OpenStack (version 18 onwards) - Private Cloud (RHEL cloud instance).
+		RHOVE - Red Hat OpenShift Virtualization Engine - Hypervisor level (VMs management).
+		Dell/HPE/IBM hardware (x86_64,s380x etc) - RHEL on Physical node.
+
+   - Whay use it? 
+    - Managing servers (RHEL infra) individually becomes slow and inconsistent as the env grows.
+
+1.2- What problems does it solve?
+   - Inconsistent packages/software.
+   - Uncontrolled patching (Secure/bugfinx/feature patches).
+   - Repeated administration.
+   - etc 
+
+1.3- What are External Content Sources?
+     - What are they? -> Original location from which Satellite obtains software/patches and other management content.
+	 
+     - Why use them? -> Servers need trusted packages, fixs, approved packages/software.
+	 Example:-
+	  - Red Hat Content Delivery Network (CDN) - Supplies RHEL packages and errata.
+	  - Private repositories - Supplies company-developed packages.
+	  
+1.4- What is Satellite server ?
+     - Central management server where admins control contents, hosts, and content lifecycle.
+	 
+	 - It provides one place( Centralized place) to decide which packages/software is available to which systems/hosts.
+	 
+	 - Main responsibilities:- Synchorize content, manage it's release through environments, organize hosts, control admins access and configure capsules.
+	 
+	 Examplee:-
+	  BLR satellite server sync update, prepares and approved contents version and make it available to the approriate server groups.
+	  
+	 How to manage via satellite.
+     Web UI     (Browser based GUI)
+     Hammer CLI (Command line admin tools)
+     REST API 	(Interface for integration with script and application).
+	 
+1.5- What is Capsule Servers ?
+     - Servers that provides local Satellite service to assigned managed hosts, including contents distribution, when configured, provisioning service.
+	 
+	 Example:-
+	   Bengaluru (India) -> Satellite
+        
+	   Delhi (India) -> Capsule sync the required content from Bengaluru. Delhi's 100 servers then obtain packages from their local Capsule.
+	    100-200 servers 
+		
+	Two imp points:-
+     - Satellite includes an "integrated Capsule", so nearby hosts can receive service directly from the Satellite system.
+     
+	 - Seperate Capsule is useful for remote locations or scaling; 
+
+1-6- What is Managed Hosts? 
+     All registered systems whose software/patches and management activities are controlled via Satellite.
+
+1.7- What is "Content Lifecycle Management"?
+    Controlling how approved software/patches contents moves through stages like:-
+    Dev, Test, Stage, Prod 
+
+    Dev/Test -> Stage -> Prod 
+
+Complete workflow work ?
+1-) Obtain content:- Satellite sync RHEL packages and errata from REd Hat (also any required priavte contents) - Bengaluru
+
+2-) Prepare and approved version:- Admins publishes "Content View Version".
+
+3-) Validate it:- Dev/Test hosts use that contents ; Team checks application part.
+
+4-) Promote it:- Approved version becomes available in the Prod env.
+
+5-) Synchorize the Capsule:- Delhi Capsule receives the content required by its assigned hosts.
+
+6-) Apply updates:- Admins run the approved patching activity during the maintenance window.
+
+7-) Review Result:- Admin checks jobs result and host packages/errata information.
+
+ 	
