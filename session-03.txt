@@ -1,0 +1,101 @@
+Example:- Dell has its satellite server in (India-Bengalure), with remote Capsules in (India-Delhi, Mumbai, and Hyderadad).
+- Dell's satellite server -> India-Bengalure (1-Location)
+  - Rest are servers with RHEL in same data center where satellite server.
+
+- Dell's Capsules Server  -> India-Delhi/Mumbai/Hyderadad (3 different -location)
+  - Rest are servers with RHEL in same data center where Capsules servers.
+
+  Example:-
+   Delhi location.
+    - One Capsules server 
+	- 500 Production servers (RHEL)
+	- 100 Non-Production server (RHEL)
+      FYI- Non-Production (Stage/Dev/Test/INT)	
+
+
+Note: 
+- Each location has RHEL server to provision and patch.
+- servera-d.lab.example.com - Patch 
+- servere.lab.example.com - New server which need to provision.
+
+-------
+Point-1) External Source:- Where does content originate?
+  - What is this External Source? 
+    Sources of software packages, container images, configuration contents and security compliance conetnets.
+	
+  - Why use them ? 
+    Satellite needs trusted software and management contents to distribute to servers.
+	
+  - Example:- Obtain RHEL security updates from Red Hat and an internal monitoring packages from "Dell's repository"
+  
+
+- Red Hat Content Delivery Network (CDN):-
+  - Red Hat Software repositories.
+  - Example:- RHEL packages and security fixes.
+
+- Puppet:- 
+  - Configuration Management Content.  
+  - Example:- Define a standard service configuration.
+  
+- Docker:-
+  - Container images contents.
+  - Example:- An application container images.
+  
+- Git:-
+  - Version-controlled contents.
+  - Example:- Configuration or automation files.
+  
+- SCAP (Security Content Automation Protocol):-
+  - Organization-specific software 
+  - Example:- Dell monitoring agent RPM.
+
+Note:- These lables represnt different conetnet types, their integration methods and availability depends on Satellite version and configuration.
+
+--------
+Point-2) 
+ Satellite Server - Where is everything controlled?
+  - What ? Central management system containing the components as part of architecture figure.
+  - Why use it? -> Admins need one place to manage hosts, repositories, subscriptions and approved software version.
+
+  Example:- Bengalure admins decides which updates Delhi production server can access.
+
+Point-3) 
+Pulp:- Synchonize and store the actual content.
+  What is pulp -> Repository and content service used by Satellite.
+  Why to use?  -> To download conetnet, store it locally and support distribution to Capsules.
+  
+  Eaxmple:- Pulp Synchonize RHEL repositories containing packages such as httpd and their update.
+  
+Point-4) Candlepin -> manage subscriptions information.
+  - Satellite's subscription management service.
+  - Example:- Dell import a Red Hat subscription manifest and Candlepin hanlde it's subscription information.
+  
+
+Point-5) Katello - Control software lifecycle.
+  - What is Katello -> Foreman plug-in that integrate repositories, contents lifecycle and subscription management.
+  - Why to use ? -> To contorl which conetnet version different host can access.
+  - Example:- Publish a conetnet view version which containing selected RHEL conetnet, and test it in Development environment (non-prod env) and then promote the same version though Testing to Production (Prod environment).
+  
+ 
+Point-6) Foreman - Provision and manage hosts.
+         Example:- Provision 10 Delhi application server using standard RHEL kickstart template. 
+		 
+Point-7) API & Hammer -> HOw do admins give instrcution?
+    API (Application Programming INterface) - enable application and script to interact with Satellite.
+	Hammer - Provides CLI/Web UI - where most of the admin use.
+
+Point-8) Integrated Capsules - Serve hosts near Satellite.
+   What is this ? -> Capsules functionality included within the Central Satellite server.
+   Why to use this ? -> To provide contnet and configured services to hosts without requring a seperate Capsules.
+   
+   Example:- Bengalure RHEL server use Satellite's integrate Capsules.
+   
+Point-9) Remote Capsules:- Bring repositories and serives closer to hosts.
+  Example:- Delhi's 100 servers download approved packages from Delhi's Capsules server.
+  
+  
+  
+  
+ satellite.lab.example.com 
+ cdn.lab.example.com  (Red Hat CDN).
+ 
