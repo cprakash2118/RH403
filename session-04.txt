@@ -1,0 +1,41 @@
+Task-1# GE- Plan a Red Hat Satellite Deployment.
+Part-1) FOr satellite server checks.
+  - Access to Satellite (satellite.lab.example.com) server and verify few basic checks.
+  - satellite (satellite.lab.example.com) machine meets the minimum RAM of 20 GB.
+  - satellite server must be having cdn connectivity (cdn.lab.example.com)
+  - satellite machine has the required architecture and OS version.
+    hostnamectl ; uname -a (x86_64 /s390x etc).
+  - DNS must be configured correctly and NTP must be on sync.
+  
+  
+Part-2) For Capsule server checks.
+  - Verify that the capsule machine meets the minimum RAM of 12 GB
+  - capsule machine has the required architecture and OS version.
+    hostnamectl ; uname -a (x86_64 /s390x etc).
+  - DNS must be configured correctly and NTP must be on sync. 
+
+
+Task-2# GE- Validate a Red Hat Satellite Installation.
+- Verifying the services:-
+   - installation health
+   - firewall configuration
+   - time synchronization
+   - DNS resolution
+
+- Login to Web UI (satellite.lab.example.com -> admin/redhat).
+- Login to satellite server via ssh and perfrom/verify basic checks for service list and health checks.
+  Run as root/sudo account. 
+  $ satellite-maintain --help |less
+  $ satellite-maintain service --help |less 
+  $ satellite-maintain service list
+
+  $ satellite-maintain health --help |less
+  $ satellite-maintain health check 
+
+
+Task-3# Administer Satellite with the Hammer Command-line Tool.
+  - Verify the authentication status for Hammer.
+  - Create organizations, users, user groups, and host collections by using Hammer.
+  
+  Verify via CLI/UI.
+  
