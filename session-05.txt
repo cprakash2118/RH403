@@ -1,0 +1,33 @@
+Configure Organizations and Content Manifests:-
+- Add an organization and a location, and install a content manifest for an organization.
+
+1-) Login to Satellite UI as admin (admin/redhat -> https://satellite.lab.example.com)
+2-) Create the Marketing organization.
+3-) Configure the Marketing organization to use content from the Red Hat Content Delivery Network.
+    - https://cdn.lab.example.com
+    - cdn.main.citi.com -> Belongs to citi's satellite server (satellite.lab.example.com)
+4-) Create the Boston location and associate the Operations organization with that location.
+
+---------
+Outcomes
+ - Verify the status of Red Hat Satellite services.
+ - Verify the prerequisites for Red Hat Satellite.
+ - Configure an organization and a location.
+ - Associate a location with an organization
+ 
+ 
+Unit-2)
+ - Synchronizing RedHat Content:-
+   
+   What is Synchronization and why use it ?
+   1) Organizations & Subcription Manifests- 
+   2) Product and Repository 
+   3) Enable and Sync 
+   4) Download policy 
+   5) Sync plan 
+   
+  Taks-1:- 
+  - Add repository to Operations.
+  - Sync it once.
+  - Then Schedule future sync.
+  - 
